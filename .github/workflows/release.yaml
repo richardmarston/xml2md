@@ -33,6 +33,6 @@ jobs:
       with:
         tag_name: ${{ github.event.client_payload.tag }}
         files: |
-          Bridge
+          Bridge.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
