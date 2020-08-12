@@ -20,12 +20,11 @@ jobs:
     - name: List files
       id: list-files
       run: |
-        ls ${{ github.workspace }}/Bridge
-        ls ${{ github.workspace }}
+         echo $(pwd)
     - name: Create Archive
       id: create-archive
       run: |
-        zip Bridge.zip ${{ github.workspace }}/Bridge
+        zip -r Bridge Bridge
     - name: Create Release
       id: create-release
       uses: actions/create-release@v1
