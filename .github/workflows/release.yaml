@@ -18,6 +18,7 @@ jobs:
       id:   build-it-now
       uses: ./
     - name: UploadRelease
+      id: upload-release
       uses: actions/upload-artifact@v2
       with:
         name: Bridge
@@ -37,7 +38,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.UploadRelease.outputs.upload_url }}
+        upload_url: ${{ steps.upload-release.outputs.upload_url }}
         asset_path: ./Bridge.zip
         asset_name: Bridge.zip
         asset_content_type: application/zip
