@@ -21,7 +21,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Bridge
-        path: ${{ github.workspace }}/Bridge/*.md
+        path: ${{ github.workspace }}/Bridge
   release:
     needs: package
     runs-on: ubuntu-latest
@@ -33,6 +33,6 @@ jobs:
       with:
         tag_name: ${{ github.event.client_payload.tag }}
         files: |
-          Bridge/*.md
+          Bridge
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
