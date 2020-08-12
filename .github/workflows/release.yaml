@@ -17,6 +17,11 @@ jobs:
     - name: Create MD
       id:   build-it-now
       uses: ./
+    - name: List files
+      id: list-files
+      run: |
+        ls ${{ github.workspace }}/Bridge
+        ls ${{ github.workspace }}
     - name: Create Archive
       id: create-archive
       run: |
@@ -28,7 +33,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.event.client_payload.tag }}
-        release_name: Release ${{ github.ref }}
+        release_name: Release ${{ github.event.client_payload.tag }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
