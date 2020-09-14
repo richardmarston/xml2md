@@ -14,7 +14,11 @@ jobs:
       uses: actions/checkout@v2
     - name: Get Latest xml2md-input
       id: xml2md-input-release
-      run: echo ::set-output name={xml2md-input-version}::{$(./get_latest.sh ${{ github.repository_owner }} xml2md-input Release.zip xml2md-input)}
+      run: |
+          GET_LATEST_OUTPUT=$(./get_latest.sh ${{ github.repository_owner }} xml2md-input Release.zip xml2md-input)
+          echo "GLO: ${GET_LATEST_OUTPUT}"
+          RELEASE_VERSION=$(echo $GET_LATEST_OUTPUT | sed 's/Release version: //')
+          echo ::set-output name=xml2md-input-version::${RELEASE_VERSION}
     - name: Get Latest excel2xml-input
       id: excel2xml-release
       run: echo ::set-output name={excel2xml-version}::{$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)}

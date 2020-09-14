@@ -7,7 +7,7 @@ prefix="Location: https://github.com/${owner_url}/${repo_name}/releases/tag/"
 suffix=" [following]"
 tail=${latest_url#"$prefix"}
 release_version=${tail%"$suffix"}
-echo "$release_version"
+echo "Release version: $release_version"
 if [ -z "${file_request}" ]
 then
     exit 0
