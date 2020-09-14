@@ -14,10 +14,10 @@ jobs:
       uses: actions/checkout@v2
     - name: Get Latest xml2md-input
       id: xml2md-input-release
-      run: ::set-output name={xml2md-input-version}::{$(./get_latest.sh ${{ github.repository_owner }} xml2md-input Release.zip xml2md-input)}
+      run: echo ::set-output name={xml2md-input-version}::{$(./get_latest.sh ${{ github.repository_owner }} xml2md-input Release.zip xml2md-input)}
     - name: Get Latest excel2xml-input
       id: excel2xml-release
-      run: ::set-output name={excel2xml-version}::{$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)}
+      run: echo ::set-output name={excel2xml-version}::{$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)}
     - name: Create MD
       id:   build-it-now
       uses: ./
