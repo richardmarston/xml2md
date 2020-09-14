@@ -18,10 +18,16 @@ jobs:
           GET_LATEST_OUTPUT=$(./get_latest.sh ${{ github.repository_owner }} xml2md-input Release.zip xml2md-input)
           echo "GLO: ${GET_LATEST_OUTPUT}"
           RELEASE_VERSION=$(echo $GET_LATEST_OUTPUT | sed 's/Release version: //')
+          echo "RELEASE_VERSION: ${RELEASE_VERSION}"
           echo ::set-output name=xml2md-input-version::${RELEASE_VERSION}
     - name: Get Latest excel2xml-input
       id: excel2xml-release
-      run: echo ::set-output name={excel2xml-version}::{$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)}
+      run:
+          GET_LATEST_OUTPUT=$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)
+          echo "GLO: ${GET_LATEST_OUTPUT}"
+          RELEASE_VERSION=$(echo $GET_LATEST_OUTPUT | sed 's/Release version: //')
+          echo "RELEASE_VERSION: ${RELEASE_VERSION}"
+          echo ::set-output name=excel2xml-version::${RELEASE_VERSION}
     - name: Create MD
       id:   build-it-now
       uses: ./
@@ -29,6 +35,10 @@ jobs:
       id: create-archive
       run: |
         zip -r Bridge Bridge
+    - name: Check Vars
+      run: |
+          echo ${{ steps.xml2md-input-release.output.xml2md-input-version }}
+          echo ${{ steps.excel2xml-release.output.excel2xml-version }}
     - name: Create Release
       id: create-release
       uses: actions/create-release@v1
