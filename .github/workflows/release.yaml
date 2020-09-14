@@ -37,8 +37,8 @@ jobs:
         zip -r Bridge Bridge
     - name: Check Vars
       run: |
-          echo ${{ steps.xml2md-input-release.output.xml2md-input-version }}
-          echo ${{ steps.excel2xml-release.output.excel2xml-version }}
+          echo ${{ steps.xml2md-input-release.outputs.xml2md-input-version }}
+          echo ${{ steps.excel2xml-release.outputs.excel2xml-version }}
     - name: Create Release
       id: create-release
       uses: actions/create-release@v1
@@ -47,7 +47,7 @@ jobs:
       with:
         tag_name: ${{ github.event.client_payload.tag }}
         release_name: Release ${{ github.event.client_payload.tag }}
-        body: "Contains:\nxml2md-input release: ${{ steps.xml2md-input-release.output.xml2md-input-version }}\nexcel2xml release: ${{ steps.excel2xml-release.output.excel2xml-version }}"
+        body: "Contains:\nxml2md-input release: ${{ steps.xml2md-input-release.outputs.xml2md-input-version }}\nexcel2xml release: ${{ steps.excel2xml-release.outputs.excel2xml-version }}"
         draft: false
         prerelease: false
     - name: Upload Release Asset

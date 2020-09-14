@@ -12,8 +12,8 @@ if [ -z "${file_request}" ]
 then
     exit 0
 else
-    wget https://github.com/${owner_url}/${repo_name}/releases/download/${release_version}/${file_request}
-    unzip $file_request -d $destination
+    wget -q https://github.com/${owner_url}/${repo_name}/releases/download/${release_version}/${file_request}
+    unzip -q $file_request -d $destination
     rm $file_request
     exit 0
 fi
