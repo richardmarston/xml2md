@@ -22,7 +22,7 @@ jobs:
           echo ::set-output name=xml2md-input-version::${RELEASE_VERSION}
     - name: Get Latest excel2xml-input
       id: excel2xml-release
-      run:
+      run: |
           GET_LATEST_OUTPUT=$(./get_latest.sh ${{ github.repository_owner }} excel2xml grupoetra.zip grupoetra)
           echo "GLO: ${GET_LATEST_OUTPUT}"
           RELEASE_VERSION=$(echo $GET_LATEST_OUTPUT | sed 's/Release version: //')
